@@ -105,7 +105,7 @@
       const peopleValue = parseFloat(numberOfPeople.value) || 1;
       const customTipValue = parseInt(customTip.value) || 5;
       let amount = ((billValue * percent) / peopleValue).toFixed(2);
-      let total = (billValue + (billValue * percent) / peopleValue).toFixed(2);
+      let total = ((billValue + (billValue * percent)) / peopleValue).toFixed(2);
       textAmount.textContent = '$' + amount;
       textTotal.textContent = '$' + total;
     }
