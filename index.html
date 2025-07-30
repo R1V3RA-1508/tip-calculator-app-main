@@ -55,7 +55,11 @@
           </div>
         </div>
         <div class="number w-full mt-[2.5vh]">
-          <label for="people" class="text-gray-400">Number of People</label>
+          <div class="labels flex justify-between">
+            <label for="people" class="text-gray-400">Number of People</label>
+            <p id='zero' class="text-red-600 text-right hidden">Can't be zero</p>
+          </div>
+          <!-- border-red-600 -->
           <input type="number" id="numberOfPeople" name="people" class="border text-2xl w-full border-gray-200 rounded-sm border-solid p-1 pl-[2rem] outline-none" style="background: url(images/icon-person.svg) hsl(189, 47%, 97%) no-repeat center left; background-position: 0.5rem;">
         </div>
       </div>
@@ -91,7 +95,9 @@
     const numberOfPeople = document.getElementById("numberOfPeople");
     const textAmount = document.getElementById("amount");
     const textTotal = document.getElementById("total");
-    const customTip = document.getElementById("customTip")
+    const customTip = document.getElementById("customTip");
+    const zeroPeople =  document.getElementById('zero');
+    
 
 
     function update(){
@@ -113,14 +119,33 @@
       numberOfPeople.value = 1;
       update();
     }
+    function checkZero(){
+      if (numberOfPeople.value <= 0){
+        numberOfPeople.classList.remove("border-gray-200");
+        numberOfPeople.classList.add("border-red-600");
+        zeroPeople.classList.remove("hidden");
+      }
+      else{
+        update();
+        numberOfPeople.classList.add("border-gray-200");
+        numberOfPeople.classList.remove("border-red-600");
+        zeroPeople.classList.add("hidden");
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
-    update();
-    billInput.addEventListener('input', update);
-    numberOfPeople.addEventListener('input', update);
-    customTip.addEventListener('input', update)
+      update();
+      billInput.addEventListener('input', update);
+      numberOfPeople.addEventListener('input', checkZero);
+      customTip.addEventListener('input', update);
+      // numberOfPeople.addEventListener('input', function(){
+      // switch(this.value){
+      //  case '0':
+      //    zeroPeople.classList.replace("border-gray-200", "border-red-600");
+    // }});
+    })
     // percent.addEventListener('change', update);
-  });
-  
+    
 
   </script>
 </body>
