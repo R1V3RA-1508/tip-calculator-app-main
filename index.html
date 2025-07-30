@@ -35,22 +35,22 @@
           </div>
           <div class="selects grid grid-cols-2 gap-1">
             <div class="select-tip-5">
-              <button type="button" class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900">5%</button>
+              <button type="button" onclick='setPercent(5)' class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900 active:bg-emerald-600">5%</button>
             </div>
             <div class="select-tip-10">
-              <button class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900">10%</button>
+              <button onclick='setPercent(10)' class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900 active:bg-emerald-600">10%</button>
             </div>
             <div class="select-tip-15">
-              <button class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900">15%</button>
+              <button onclick='setPercent(15)' class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900 active:bg-emerald-600">15%</button>
             </div>
             <div class="select-tip-25">
-              <button class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900">25%</button>
+              <button onclick='setPercent(25)' class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900 active:bg-emerald-600">25%</button>
             </div>
             <div class="select-tip-50">
-              <button class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900">50%</button>
+              <button onclick='setPercent(50)' class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900 active:bg-emerald-600">50%</button>
             </div>
             <div class="select-tip-custom">
-              <input type="number" class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900 text-center" placeholder="Custom">
+              <input id="customTip" oninput="setPercent(this.value)" type="number" class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900 text-center active:bg-emerald-600" placeholder="Custom">
             </div>
           </div>
         </div>
@@ -75,7 +75,7 @@
           <p id="total">$0.00</p>
         </div>
         <div class="reset bg-emerald-900 text-emerald-400 border-emerald-400 border-solid border-[2px] hover:bg-emerald-400 hover:text-emerald-900 text-center justify-center m-auto p-3 lg:mt-[15vh] mt-[2vh] rounded-lg" style="width: 202%;">
-          <button style="width: 100%">Reset</button>
+          <button onclick="reset()" style="width: 100%">Reset</button>
         </div>
       </div>
       
@@ -86,26 +86,41 @@
     Coded by <a href="#">Your Name Here</a>.
   </div>
   <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() {
-      const billInput = document.getElementById('billInput');
-      const numberOfPeople = document.getElementById("numberOfPeople");
-      const textAmount = document.getElementById("amount");
-      const textTotal = document.getElementById("total");
+    let percent = 0.05;
+    const billInput = document.getElementById('billInput');
+    const numberOfPeople = document.getElementById("numberOfPeople");
+    const textAmount = document.getElementById("amount");
+    const textTotal = document.getElementById("total");
+    const customTip = document.getElementById("customTip")
 
-      let percent = 0.05;
 
     function update(){
       const billValue = parseFloat(billInput.value) || 0;
       const peopleValue = parseFloat(numberOfPeople.value) || 1;
+      const customTipValue = parseInt(customTip.value) || 5;
       let amount = ((billValue * percent) / peopleValue).toFixed(2);
       let total = (billValue + (billValue * percent) / peopleValue).toFixed(2);
       textAmount.textContent = '$' + amount;
       textTotal.textContent = '$' + total;
     }
-
+    function setPercent(percentValue){
+      percentValue = percentValue / 100;
+      percent = percentValue;
+      update();
+    }
+    function reset(){
+      billInput.value = 0;
+      numberOfPeople.value = 1;
+      update();
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+    update();
     billInput.addEventListener('input', update);
     numberOfPeople.addEventListener('input', update);
+    customTip.addEventListener('input', update)
+    // percent.addEventListener('change', update);
   });
+  
 
   </script>
 </body>
