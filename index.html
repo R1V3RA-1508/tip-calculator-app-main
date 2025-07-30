@@ -19,60 +19,62 @@
   </style>
 </head>
 <body>
-  <div class="mainnlogo md:mt-[23vh] mt-[5vh]">
+  <div class="mainnlogo lg:mt-[10vh] mt-[5vh]">
     <img src="images/logo.svg" alt="" class="justify-center m-auto pb-[5vh]">
-    <div class="main p-5 h-4xl bg-white md:w-[445px] justify-center m-auto w-full rounded-2xl">
-      <div class="title">
-        <label for="bill" class="text-gray-400">Bill</label>
-      </div>
-      <div class="bill-input">
-        <input type="number" name="bill" class="border text-2xl border-gray-200 rounded-sm border-solid p-1 pl-[1.5rem] outline-none" style="background: url(images/icon-dollar.svg) hsl(189, 47%, 97%) no-repeat center left; background-position: 0.5rem;">
-      </div>
-      <div class="choose mt-[5vh]">
-        <div class="select-tip-title text-gray-400 pb-[2.5vh]">
-          Select Tip %
+    <div class="main lg:flex lg:flex-row lg:justify-between p-5 h-4xl bg-white lg:w-[768px] justify-center m-auto w-full rounded-2xl">
+      <div class="inputs lg:w-[25vw]">
+        <div class="title">
+          <label for="bill" class="text-gray-400">Bill</label>
         </div>
-        <div class="selects grid grid-cols-2 gap-1">
-          <div class="select-tip-5">
-            <button type="button" class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900">5%</button>
+        <div class="bill-input w-full">
+          <input type="number" name="bill" class="border w-full text-2xl border-gray-200 rounded-sm border-solid p-1 pl-[1.5rem] outline-none" style="background: url(images/icon-dollar.svg) hsl(189, 47%, 97%) no-repeat center left; background-position: 0.5rem;">
+        </div>
+        <div class="choose mt-[5vh]">
+          <div class="select-tip-title text-gray-400 pb-[2.5vh]">
+            Select Tip %
           </div>
-          <div class="select-tip-10">
-            <button class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900">10%</button>
-          </div>
-          <div class="select-tip-15">
-            <button class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900">15%</button>
-          </div>
-          <div class="select-tip-25">
-            <button class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900">25%</button>
-          </div>
-          <div class="select-tip-50">
-            <button class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900">50%</button>
-          </div>
-          <div class="select-tip-custom">
-            <input type="number" class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900 text-center" placeholder="Custom">
+          <div class="selects grid grid-cols-2 gap-1">
+            <div class="select-tip-5">
+              <button type="button" class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900">5%</button>
+            </div>
+            <div class="select-tip-10">
+              <button class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900">10%</button>
+            </div>
+            <div class="select-tip-15">
+              <button class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900">15%</button>
+            </div>
+            <div class="select-tip-25">
+              <button class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900">25%</button>
+            </div>
+            <div class="select-tip-50">
+              <button class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900">50%</button>
+            </div>
+            <div class="select-tip-custom">
+              <input type="number" class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900 text-center" placeholder="Custom">
+            </div>
           </div>
         </div>
+        <div class="number w-full mt-[2.5vh]">
+          <label for="people" class="text-gray-400">Number of People</label>
+          <input type="text" name="people" class="border text-2xl w-full border-gray-200 rounded-sm border-solid p-1 pl-[2rem] outline-none" style="background: url(images/icon-person.svg) hsl(189, 47%, 97%) no-repeat center left; background-position: 0.5rem;">
+        </div>
       </div>
-      <div class="number mt-[2.5vh]">
-        <label for="people" class="text-gray-400">Number of People</label>
-        <input type="text" name="people" class="border text-2xl border-gray-200 rounded-sm border-solid p-1 pl-[2rem] outline-none" style="background: url(images/icon-person.svg) hsl(189, 47%, 97%) no-repeat center left; background-position: 0.5rem;">
-      </div>
-      <div class="result bg-emerald-900 rounded-lg mt-[2.5vh] text-2xl p-3 text-white grid grid-cols-2 gap-1">
-        <div class="amount text-xl">
+      <div class="result lg:w-[25vw] lg:ml-[2vw] bg-emerald-900 rounded-lg lg:mt-0 mt-[2.5vh] text-2xl p-3 text-white grid grid-cols-2 gap-1">
+        <div class="amount text-sm mt-[0.5vh]">
           <p>Tip Amount</p>
-          <p>/ person</p><br>
+          <p class="text-gray-400 text-xs">/ person</p><br>
         </div>
         <div class="amount-cash text-center text-emerald-400 mt-[1vh]">
-          <p>$0.00</p>
+          <p id="amount">$0.00</p>
         </div>
-        <div class="total text-xl">
+        <div class="total text-sm mt-[1vh]">
           <p>Total</p>
-          <p>/ person</p>
+          <p class="text-gray-400 text-xs">/ person</p>
         </div>
-        <div class="total-cash text-center text-emerald-400 mt-[1.5vh]">
-          <p>$0.00</p>
+        <div class="total-cash text-center text-emerald-400 mt-[2vh]">
+          <p id="total">$0.00</p>
         </div>
-        <div class="reset bg-emerald-400 text-emerald-900 text-center justify-center m-auto p-3 mt-[2vh] rounded-lg" style="width: 202%;">
+        <div class="reset bg-emerald-900 text-emerald-400 border-emerald-400 border-solid border-[2px] hover:bg-emerald-400 hover:text-emerald-900 text-center justify-center m-auto p-3 lg:mt-[15vh] mt-[2vh] rounded-lg" style="width: 202%;">
           <button style="width: 100%">Reset</button>
         </div>
       </div>
