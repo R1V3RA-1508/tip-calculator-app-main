@@ -27,7 +27,7 @@
           <label for="bill" class="text-gray-400">Bill</label>
         </div>
         <div class="bill-input w-full">
-          <input type="number" name="bill" class="border w-full text-2xl border-gray-200 rounded-sm border-solid p-1 pl-[1.5rem] outline-none" style="background: url(images/icon-dollar.svg) hsl(189, 47%, 97%) no-repeat center left; background-position: 0.5rem;">
+          <input type="number" id='billInput' name="bill" class="border w-full text-2xl border-gray-200 rounded-sm border-solid p-1 pl-[1.5rem] outline-none" style="background: url(images/icon-dollar.svg) hsl(189, 47%, 97%) no-repeat center left; background-position: 0.5rem;">
         </div>
         <div class="choose mt-[5vh]">
           <div class="select-tip-title text-gray-400 pb-[2.5vh]">
@@ -56,7 +56,7 @@
         </div>
         <div class="number w-full mt-[2.5vh]">
           <label for="people" class="text-gray-400">Number of People</label>
-          <input type="text" name="people" class="border text-2xl w-full border-gray-200 rounded-sm border-solid p-1 pl-[2rem] outline-none" style="background: url(images/icon-person.svg) hsl(189, 47%, 97%) no-repeat center left; background-position: 0.5rem;">
+          <input type="number" id="numberOfPeople" name="people" class="border text-2xl w-full border-gray-200 rounded-sm border-solid p-1 pl-[2rem] outline-none" style="background: url(images/icon-person.svg) hsl(189, 47%, 97%) no-repeat center left; background-position: 0.5rem;">
         </div>
       </div>
       <div class="result lg:w-[25vw] lg:ml-[2vw] bg-emerald-900 rounded-lg lg:mt-0 mt-[2.5vh] text-2xl p-3 text-white grid grid-cols-2 gap-1">
@@ -85,5 +85,28 @@
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
   </div>
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+      const billInput = document.getElementById('billInput');
+      const numberOfPeople = document.getElementById("numberOfPeople");
+      const textAmount = document.getElementById("amount");
+      const textTotal = document.getElementById("total");
+
+      let percent = 0.05;
+
+    function update(){
+      const billValue = parseFloat(billInput.value) || 0;
+      const peopleValue = parseFloat(numberOfPeople.value) || 1;
+      let amount = ((billValue * percent) / peopleValue).toFixed(2);
+      let total = (billValue + (billValue * percent) / peopleValue).toFixed(2);
+      textAmount.textContent = '$' + amount;
+      textTotal.textContent = '$' + total;
+    }
+
+    billInput.addEventListener('input', update);
+    numberOfPeople.addEventListener('input', update);
+  });
+
+  </script>
 </body>
 </html>
