@@ -17,46 +17,50 @@
     body {background: hsl(185, 41%, 84%);}
     .main {font-family: 'Space Mono';}
   </style>
+  <style type="text/tailwindcss">
+    @theme{
+      --color-emerald-900: hsl(183, 100%, 15%);
+      --color-emerald-400: #00d492;
+    }
+  </style>
 </head>
 <body>
   <div class="mainnlogo lg:mt-[10vh] mt-[5vh]">
     <img src="images/logo.svg" alt="" class="justify-center m-auto pb-[5vh]">
-    <div class="main lg:flex lg:flex-row lg:justify-between p-5 h-4xl bg-white lg:w-[768px] justify-center m-auto w-full rounded-2xl">
+    <div class="main lg:flex lg:flex-row lg:justify-between p-9 h-4xl bg-white lg:w-[768px] justify-center m-auto w-full rounded-2xl">
       <div class="inputs lg:w-[25vw]">
-        <div class="title">
-          <label for="bill" class="text-gray-400">Bill</label>
-        </div>
         <div class="bill-input w-full">
+          <label for="bill" class="text-gray-500">Bill</label>
           <input type="number" id='billInput' name="bill" class="border w-full text-2xl border-gray-200 rounded-sm border-solid p-1 pl-[1.5rem] outline-none" style="background: url(images/icon-dollar.svg) hsl(189, 47%, 97%) no-repeat center left; background-position: 0.5rem;">
         </div>
         <div class="choose mt-[5vh]">
-          <div class="select-tip-title text-gray-400 pb-[2.5vh]">
+          <div class="select-tip-title text-gray-500 pb-[2.5vh]">
             Select Tip %
           </div>
-          <div class="selects grid grid-cols-2 gap-1">
+          <div class="selects grid grid-cols-3 gap-1">
             <div class="select-tip-5">
-              <button type="button" onclick='setPercent(5)' class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900 active:bg-emerald-600">5%</button>
+              <button type="button" onclick='setPercent(5)' class="rounded-sm bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-emerald-900 active:bg-emerald-600">5%</button>
             </div>
             <div class="select-tip-10">
-              <button onclick='setPercent(10)' class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900 active:bg-emerald-600">10%</button>
+              <button onclick='setPercent(10)' class="rounded-sm bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900 active:bg-emerald-600">10%</button>
             </div>
             <div class="select-tip-15">
-              <button onclick='setPercent(15)' class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900 active:bg-emerald-600">15%</button>
+              <button onclick='setPercent(15)' class="rounded-sm bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900 active:bg-emerald-600">15%</button>
             </div>
             <div class="select-tip-25">
-              <button onclick='setPercent(25)' class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900 active:bg-emerald-600">25%</button>
+              <button onclick='setPercent(25)' class="rounded-sm bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900 active:bg-emerald-600">25%</button>
             </div>
             <div class="select-tip-50">
-              <button onclick='setPercent(50)' class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900 active:bg-emerald-600">50%</button>
+              <button onclick='setPercent(50)' class="rounded-sm bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900 active:bg-emerald-600">50%</button>
             </div>
             <div class="select-tip-custom">
-              <input id="customTip" oninput="setPercent(this.value)" type="number" class="rounded-lg bg-emerald-900 p-2 text-white w-full hover:bg-emerald-400 hover:text-green-900 text-center active:bg-emerald-600" placeholder="Custom">
+              <input id="customTip" oninput="setPercent(this.value)" type="number" class="rounded-sm bg-emerald-900 p-2 text-white w-full  text-center" placeholder="Custom">
             </div>
           </div>
         </div>
         <div class="number w-full mt-[2.5vh]">
           <div class="labels flex justify-between">
-            <label for="people" class="text-gray-400">Number of People</label>
+            <label for="people" class="text-gray-500">Number of People</label>
             <p id='zero' class="text-red-600 text-right hidden">Can't be zero</p>
           </div>
           <!-- border-red-600 -->
@@ -68,14 +72,14 @@
           <p>Tip Amount</p>
           <p class="text-gray-400 text-xs">/ person</p><br>
         </div>
-        <div class="amount-cash text-center text-emerald-400 mt-[1vh]">
+        <div class="amount-cash text-center text-4xl text-emerald-400 mt-[0.5vh]">
           <p id="amount">$0.00</p>
         </div>
         <div class="total text-sm mt-[1vh]">
           <p>Total</p>
           <p class="text-gray-400 text-xs">/ person</p>
         </div>
-        <div class="total-cash text-center text-emerald-400 mt-[2vh]">
+        <div class="total-cash text-center text-emerald-400 text-4xl mt-[1vh]">
           <p id="total">$0.00</p>
         </div>
         <div class="reset bg-emerald-900 text-emerald-400 border-emerald-400 border-solid border-[2px] hover:bg-emerald-400 hover:text-emerald-900 text-center justify-center m-auto p-3 lg:mt-[15vh] mt-[2vh] rounded-lg" style="width: 202%;">
@@ -102,10 +106,10 @@
 
     function update(){
       const billValue = parseFloat(billInput.value) || 0;
-      const peopleValue = parseFloat(numberOfPeople.value) || 1;
+      const peopleValue = parseInt(numberOfPeople.value) || 1;
       const customTipValue = parseInt(customTip.value) || 5;
       let amount = ((billValue * percent) / peopleValue).toFixed(2);
-      let total = (billValue + (billValue * percent) / peopleValue).toFixed(2);
+      let total = ((billValue + (billValue * percent)) / peopleValue).toFixed(2);
       textAmount.textContent = '$' + amount;
       textTotal.textContent = '$' + total;
     }
